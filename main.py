@@ -1,18 +1,24 @@
+# Imports used
 import urllib.request
 import json
 from time import sleep
 import pyfirmata
 import time
 
+# Finding the USB port the Arduino is connected to
 arduino = pyfirmata.Arduino('COM3')
 
-
+# Method/Function for getting player data
 def get_data():
     with open("Resources/my_key.txt") as f:
         my_key = f.read().rstrip("\n")
 
+        # API url
         base_url = "https://api.clashroyale.com/v1"
+        # Information you need
         endpoint = "/players/"
+
+        # Player tag
         # Aslan's playerTag = "%23R9VL20G9"
         # Runbier's playerTag = "%23R0C0JGJY8"
         # Krithik's
@@ -54,6 +60,8 @@ def get_data():
 obj, wins, threeCrownWins, losses = get_data()
 
 pin = 4
+
+
 def rotateServo(pin, angle):
     arduino.digital[pin].write(angle)
     sleep(0.015)
@@ -75,7 +83,6 @@ while True:
             rotateServo(pin, i)
         for i in range(180, 1, -1):
             rotateServo(pin, i)
-
         break
 
     elif int(str(obj["threeCrownWins"])) > threeCrownWins:
