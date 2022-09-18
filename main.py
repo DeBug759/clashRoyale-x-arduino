@@ -6,7 +6,7 @@ import pyfirmata
 import time
 
 # Finding the USB port the Arduino is connected to
-arduino = pyfirmata.Arduino('COM3')
+#arduino = pyfirmata.Arduino('COM3')
 
 # Method/Function for getting player data
 def get_data():
@@ -63,7 +63,7 @@ pin = 4
 
 
 def rotateServo(pin, angle):
-    arduino.digital[pin].write(angle)
+    #arduino.digital[pin].write(angle)
     sleep(0.015)
 
 
@@ -73,7 +73,7 @@ while True:
 
     if int(str(obj["wins"])) > wins:
         print("You won a game!")
-        arduino.digital[8].write(1)
+        #arduino.digital[8].write(1)
         time.sleep(20)
 
         # Servo pin
@@ -87,21 +87,21 @@ while True:
 
     elif int(str(obj["threeCrownWins"])) > threeCrownWins:
         print("You got a THREE CROWN WIN!")
-        arduino.digital[8].write(1)
+        #arduino.digital[8].write(1)
         time.sleep(0.5)
-        arduino.digital[8].write(0)
+        #arduino.digital[8].write(0)
         time.sleep(0.5)
-        arduino.digital[8].write(1)
+        #arduino.digital[8].write(1)
         time.sleep(5)
-        arduino.digital[8].write(0)
+        #arduino.digital[8].write(0)
         break
 
     elif int(str(obj["losses"])) > losses:
 
         print("You lost a game!")
-        arduino.digital[7].write(1)
+        #arduino.digital[7].write(1)
         time.sleep(5)
-        arduino.digital[7].write(0)
+        #arduino.digital[7].write(0)
         break
 
     print(f"Wins: {int(str(obj['wins']))}")
